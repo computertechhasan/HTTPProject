@@ -16,8 +16,21 @@ for char in rawInfo:
 server = requestInfo[0]
 port = int(requestInfo[1])
 fileName = requestInfo[2]
+count = 1000000
+
+httpRequestContainer = "PUTHTTPREQUESTHERE"
+data = "I'm alive."
 
 clientSocket = socket(AF_INET, SOCK_STREAM)
+print("Attempting to connect to " + server + " on port " + str(port) + ".")
+clientSocket.connect((server,port))
+print("Sending data to server")
+clientSocket.send(data.encode())
+dataEcho = clientSocket.recv(count)
+print("The server responded " + dataEcho.decode())
+clientSocket.close()
+
+
 
 
 
